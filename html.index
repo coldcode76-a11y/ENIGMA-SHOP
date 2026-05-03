@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ENIGMA SHOP</title>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+ font-family:'Segoe UI',sans-serif;
+ background:#000;
+ color:#fff;
+}
+
+/* HEADER */
+.header{
+ text-align:center;
+ padding:20px;
+ font-size:26px;
+ color:#FFD700;
+ text-shadow:0 0 10px gold;
+}
+
+/* PRODUCT */
+.product{
+ text-align:center;
+ margin:20px;
+ background:#111;
+ padding:20px;
+ border-radius:15px;
+ box-shadow:0 0 25px rgba(255,215,0,0.15);
+}
+.product img{
+ width:160px;
+ border-radius:12px;
+ box-shadow:0 0 20px gold;
+}
+
+/* BUTTON */
+.btn{
+ display:block;
+ width:100%;
+ padding:12px;
+ margin:8px 0;
+ border:none;
+ border-radius:10px;
+ background:linear-gradient(45deg,#FFD700,#fff);
+ color:black;
+ font-weight:bold;
+ transition:0.2s;
+}
+.btn:hover{
+ transform:scale(1.05);
+ box-shadow:0 0 15px gold;
+}
+
+/* CART */
+.cart{
+ position:fixed;
+ bottom:0;
+ width:100%;
+ background:#FFD700;
+ color:black;
+ padding:15px;
+ box-shadow:0 -5px 20px rgba(255,215,0,0.4);
+}
+
+/* INPUT */
+input{
+ width:100%;
+ padding:10px;
+ border-radius:8px;
+ border:none;
+ margin-top:5px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="header">ENIGMA SHOP</div>
+
+<!-- PRODUCT -->
+<div class="product">
+
+<img src="https://i.postimg.cc/QBLsg1hJ/20234.png">
+
+<h2>Premium World Lock's</h2>
+
+<button class="btn" onclick="selectItem('1 PWL - 3.000 IDR')">
+1 PWL = 3.000 IDR
+</button>
+
+<button class="btn" onclick="selectItem('10 PWL - 30.000 IDR')">
+10 PWL = 30.000 IDR
+</button>
+
+<button class="btn" onclick="selectItem('50 PWL - 150.000 IDR')">
+50 PWL = 150.000 IDR
+</button>
+
+<button class="btn" onclick="selectItem('200 PWL - 600.000 IDR')">
+200 PWL = 600.000 IDR
+</button>
+
+</div>
+
+<!-- CART -->
+<div class="cart">
+
+<p><b>🛒 Cart:</b> <span id="cartItem">None</span></p>
+
+<input id="growid" placeholder="Enter your GrowID">
+
+<button class="btn" onclick="checkout()">
+Checkout
+</button>
+
+<p style="font-size:12px;">
+⚠️ After payment, send screenshot in WhatsApp
+</p>
+
+</div>
+
+<script>
+
+let selected = "";
+
+// SELECT ITEM
+function selectItem(item){
+ selected = item;
+ document.getElementById("cartItem").innerText = item;
+}
+
+// CHECKOUT
+function checkout(){
+
+ let id = document.getElementById("growid").value;
+
+ if(selected == "" || id == ""){
+  alert("Select item & enter GrowID!");
+  return;
+ }
+
+ let message =
+ "🛒 ENIGMA SHOP ORDER\n\n"+
+ "Item: " + selected + "\n"+
+ "GrowID: " + id + "\n\n"+
+ "I will send payment proof.";
+
+ let url = "https://wa.me/6285394206312?text=" + encodeURIComponent(message);
+
+ window.open(url, "_blank");
+}
+
+</script>
+
+</body>
+</html>
